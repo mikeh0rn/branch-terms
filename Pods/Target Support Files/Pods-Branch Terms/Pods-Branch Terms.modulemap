@@ -1,0 +1,6 @@
+framework module Pods_Branch_Terms {
+  umbrella header "Pods-Branch Terms-umbrella.h"
+
+  export *
+  module * { export * }
+}
