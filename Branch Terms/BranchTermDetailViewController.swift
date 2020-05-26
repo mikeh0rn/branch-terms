@@ -44,6 +44,7 @@ class BranchTermDetailViewController: UIViewController {
     
     @IBAction func shareBranchTerm(sender: UIButton) {
         let message = "Learn about \(branchTermName)!"
+        print(buo.contentMetadata)
         buo.showShareSheet(with: lp, andShareText: message, from: self) { (activityType, completed) in
           print(activityType ?? "")
         }

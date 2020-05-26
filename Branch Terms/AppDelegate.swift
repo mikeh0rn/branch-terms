@@ -18,14 +18,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         Branch.getInstance().initSession(launchOptions: launchOptions) { (params, error) in
-             // do stuff with deep link data (nav to page, display content, etc)
             print(params as? [String: AnyObject] ?? {})
             
             let storyboard = UIStoryboard(name: "Main", bundle: nil);
                            let branchTermDetailViewController: BranchTermDetailViewController = storyboard.instantiateViewController(withIdentifier: "BranchTermDetailViewController") as! BranchTermDetailViewController;
-                           let quote = params?["quote"] as! String?
-                           if let unwrappedQuote = quote {
-                               branchTermDetailViewController.branchTermName = unwrappedQuote
+                           let branchTermName = params?["branch_term_name"] as! String?
+                           let branchDefinition = params?["branch_definition"] as! String?
+            if let unwrappedBranchTermName = branchTermName, let unwrappedBranchDefinition = branchDefinition {
+                               branchTermDetailViewController.branchTermName = unwrappedBranchTermName
+                               branchTermDetailViewController.branchDefinition = unwrappedBranchDefinition
 
                            let rootViewController = self.window!.rootViewController as! UINavigationController;
                            rootViewController.pushViewController(branchTermDetailViewController, animated: true);
